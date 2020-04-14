@@ -1,0 +1,6 @@
+framework module ZappAnalyticsPluginSwrvePlugin {
+  umbrella header "ZappAnalyticsPluginSwrvePlugin-umbrella.h"
+
+  export *
+  module * { export * }
+}

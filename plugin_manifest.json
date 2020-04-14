@@ -1,0 +1,43 @@
+{
+    "api": {
+        "require_startup_execution": false,
+        "class_name": "ZappAnalyticsPluginSwrve.ZappAnalyticsPluginSwrvePlugin",
+        "modules": []
+    },
+    "dependency_repository_url": ["https://github.com/mohieddinezarif/ZappAnalyticsPluginSwrve"],
+    "platform": "ios",
+    "author_name": "Mohieddine Zarif",
+    "author_email": "mohieddine.zarif@gotocme.com",
+    "manifest_version": "0.0.1",
+    "name": "ZappAnalyticsPluginSwrve",
+    "description": "SportsMax Swrve Plugin Integration",
+    "type": "analytics",
+    "identifier": "ZappAnalyticsPluginSwrve",
+    "ui_builder_support": true,
+    "dependency_name": "ZappAnalyticsPluginSwrve",
+    "dependency_version": "0.0.1",
+    "whitelisted_account_ids": [
+        "5af949534da8f300080050f9"
+    ],
+    "min_zapp_sdk": "12.1.0",
+    "deprecated_since_zapp_sdk": "",
+    "unsupported_since_zapp_sdk": "",
+    "react_native": false,
+    "custom_configuration_fields": [
+        {
+            "type": "text",
+            "key": "swrve_account_id",
+            "tooltip_text": "Swrve Account Id"
+        },
+        {
+            "type": "text",
+            "key": "swrve_sandbox_key",
+            "tooltip_text": "Swrve Sandbox Key"
+        },
+        {
+            "type": "text",
+            "key": "swrve_production_key",
+            "tooltip_text": "Swrve Production Key"
+        }
+    ]
+}

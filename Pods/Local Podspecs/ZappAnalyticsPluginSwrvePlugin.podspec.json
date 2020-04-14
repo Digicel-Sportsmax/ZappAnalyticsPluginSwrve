@@ -1,0 +1,54 @@
+{
+  "name": "ZappAnalyticsPluginSwrvePlugin",
+  "version": "0.0.1",
+  "summary": "ZappAnalyticsPluginSwrve analytics plugin for Zapp iOS.",
+  "description": "ZappAnalyticsPluginSwrve analytics plugin for Zapp iOS.",
+  "homepage": "https://github.com/mohieddinezarif/ZappAnalyticsPluginSwrve",
+  "license": "MIT",
+  "authors": {
+    "Mohieddine Zarif": "mohieddine.zarif@gotocme.com"
+  },
+  "source": {
+    "git": "https://github.com/mohieddinezarif/ZappAnalyticsPluginSwrve",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "requires_arc": true,
+  "swift_versions": "5.1",
+  "resources": [
+
+  ],
+  "xcconfig": {
+    "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES",
+    "ENABLE_BITCODE": "YES",
+    "OTHER_LDFLAGS": "$(inherited)",
+    "FRAMEWORK_SEARCH_PATHS": "$(inherited) \"${PODS_ROOT}\"/**",
+    "LIBRARY_SEARCH_PATHS": "$(inherited) \"${PODS_ROOT}\"/**",
+    "SWIFT_VERSION": "5.1"
+  },
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "frameworks": "UIKit",
+      "source_files": "PluginClasses/*.{swift,h,m}",
+      "dependencies": {
+        "ApplicasterSDK": [
+
+        ],
+        "ZappPlugins": [
+
+        ],
+        "ZappAnalyticsPluginsSDK": [
+
+        ],
+        "SwrveSDK": [
+
+        ]
+      }
+    }
+  ],
+  "swift_version": "5.1"
+}

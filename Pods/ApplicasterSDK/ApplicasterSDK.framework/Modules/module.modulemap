@@ -1,0 +1,11 @@
+framework module ApplicasterSDK {
+  umbrella header "ApplicasterSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module ApplicasterSDK.Swift {
+    header "ApplicasterSDK-Swift.h"
+    requires objc
+}
