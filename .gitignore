@@ -1,0 +1,6 @@
+*.xcodeproj
+*.xcworkspace
+Podfile
+*.lock
+Pods
+ZappAnalyticsPluginSwrve
