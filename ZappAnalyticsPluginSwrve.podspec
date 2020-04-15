@@ -26,13 +26,10 @@ Pod::Spec.new do |s|
       c.dependency 'SwrveSDK'
     end
                   
-    s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-                    'ENABLE_BITCODE' => 'YES',
-                    'OTHER_LDFLAGS' => '$(inherited)',
-                    'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "${PODS_ROOT}"/**',
-                    'LIBRARY_SEARCH_PATHS' => '$(inherited) "${PODS_ROOT}"/**',
-                    'SWIFT_VERSION' => '5.1'
-                  }
+  s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
+                  'ENABLE_BITCODE' => 'YES',
+                  'SWIFT_VERSION' => '5.1'
+                }
                   
     s.default_subspec = 'Core'
                   
