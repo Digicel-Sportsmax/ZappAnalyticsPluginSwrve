@@ -4,7 +4,9 @@
         "class_name": "ZappAnalyticsPluginSwrve.ZappAnalyticsPluginSwrvePlugin",
         "modules": []
     },
-    "dependency_repository_url": [],
+    "dependency_repository_url": [
+        "https://github.com/mohieddinezarif/ZappAnalyticsPluginSwrve.git"
+    ],
     "platform": "ios",
     "author_name": "Mohieddine Zarif",
     "author_email": "mohieddine.zarif@gotocme.com",

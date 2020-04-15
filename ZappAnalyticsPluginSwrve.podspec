@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name             = "ZappAnalyticsPluginSwrvePlugin"
-    s.version          = '0.0.2'
+    s.version          = '0.0.3'
     s.summary          = "ZappAnalyticsPluginSwrve analytics plugin for Zapp iOS."
     s.description      = <<-DESC
                           ZappAnalyticsPluginSwrve analytics plugin for Zapp iOS.
