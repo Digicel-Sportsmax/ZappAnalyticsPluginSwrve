@@ -14,7 +14,7 @@ end
 
 target 'ZappAnalyticsPluginSwrve' do
     shared_pods
-    pod 'ZappAnalyticsPluginSwrvePlugin', :path => 'ZappAnalyticsPluginSwrve.podspec'    
+    pod 'ZappAnalyticsPluginSwrve', :path => 'ZappAnalyticsPluginSwrve.podspec'    
 end
 
 post_install do |installer|
