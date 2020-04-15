@@ -32,6 +32,7 @@ open class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     public required init(configurationJSON: NSDictionary?) {
         super.init()
         self.configurationJSON = configurationJSON
+       // self.configureProvider()
     }
     
     required public init(pluginModel: ZPPluginModel) {
@@ -107,7 +108,7 @@ open class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     }
     
     open override func trackScreenView(_ screenName: String, parameters: [String : NSObject]) {
-        let eventName = "visited_"+screenName
+        let eventName = "screen_"+screenName
         trackEvent(eventName, parameters: [String : NSObject](), completion: nil)
     }
     
@@ -126,7 +127,7 @@ open class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     }
     
     public override func createAnalyticsProvider(_ allProvidersSetting: [String : NSObject]) -> Bool {
-        return true
+        return self.configureProvider()
     }
     
     public override func updateGenericUserProperties(_ genericUserProfile: [String : NSObject]) {
