@@ -17,7 +17,7 @@
     "identifier": "ZappAnalyticsPluginSwrve",
     "ui_builder_support": true,
     "dependency_name": "ZappAnalyticsPluginSwrve",
-    "dependency_version": "0.0.4",
+    "dependency_version": "0.0.5",
     "whitelisted_account_ids": [
         "5af949534da8f300080050f9"
     ],
