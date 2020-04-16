@@ -1,3 +1,11 @@
+//
+//  ZappAnalyticsPluginSwrvePlugin
+//  ZappAnalyticsPluginSwrve
+//
+//  Created by Mohieddine Zarif on 4/14/20.
+//  Copyright © 2020 CME. All rights reserved.
+//
+
 import ZappPlugins
 import ZappAnalyticsPluginsSDK
 import SwrveSDK
@@ -5,14 +13,18 @@ import SwrveSDK
 public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     
     let eventDuration = "EVENT_DURATION"
+    fileprivate let ACCOUNT_ID_KEY = "swrve_account_id"
+    fileprivate let SANDBOX_API_KEY = "swrve_sandbox_key"
+    fileprivate let PRODUCTION_API_KEY = "swrve_production_key"
+    
     static var isAutoIntegrated: Bool = false
     var timedEventDictionary: NSMutableDictionary?
-    var userID: String?
     
     public required init() {
         super.init()
         self.configurationJSON = configurationJSON
     }
+
     public required init(configurationJSON: NSDictionary?) {
         super.init()
         self.configurationJSON = configurationJSON
@@ -21,27 +33,34 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     public override func createAnalyticsProvider(_ allProvidersSetting: [String : NSObject]) -> Bool {
         return super.createAnalyticsProvider(allProvidersSetting)
     }
-    
+
     public override func configureProvider() -> Bool {
         if !(ZappAnalyticsPluginSwrvePlugin.isAutoIntegrated) {
-            ZappAnalyticsPluginSwrvePlugin.isAutoIntegrated = true
             self.setupSwrve()
         }
-
-        return true
+        return ZappAnalyticsPluginSwrvePlugin.isAutoIntegrated
 
     }
-    
-    
+
     fileprivate func setupSwrve() {
         let trackerConfig = SwrveConfig()
-        let accountId: Int32 = 6883
-        let apiKey = "eMIb7GMt6Y60SgkeGJSp"
         // SwrveConfig
         trackerConfig.stack = SWRVE_STACK_EU
         trackerConfig.pushEnabled = true
+        
+        if let accountIdVal = self.configurationJSON?[self.ACCOUNT_ID_KEY] as? String,
+            let accountIdAsInt = Int32(accountIdVal),
+            let sandboxApiKeyVal = self.configurationJSON?[self.SANDBOX_API_KEY] as? String,
+            let productionApiKeyVal = self.configurationJSON?[self.PRODUCTION_API_KEY] as? String {
+            
+            #if PROD
+            SwrveSDK.sharedInstance(withAppID: accountIdAsInt, apiKey: productionApiKeyVal, config: trackerConfig)
+            #else
+            SwrveSDK.sharedInstance(withAppID: accountIdAsInt, apiKey: sandboxApiKeyVal, config: trackerConfig)
+            #endif
+            ZappAnalyticsPluginSwrvePlugin.isAutoIntegrated = true
+        }
 
-        SwrveSDK.sharedInstance(withAppID: accountId, apiKey: apiKey, config: trackerConfig)
     }
     
     public override func getKey() -> String {
@@ -90,6 +109,15 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     
     public override func trackEvent(_ eventName: String, parameters: [String : NSObject]) {
         trackEvent(eventName, parameters: parameters, completion: nil)
+    }
+
+    public override func trackScreenView(_ screenName: String, parameters: [String : NSObject]) {
+        let eventName = "Screen Visit: "+screenName
+        trackEvent(eventName, parameters: parameters)
+    }
+
+    public override func setPushNotificationDeviceToken(_ deviceToken: Data) {
+        super.setPushNotificationDeviceToken(deviceToken)
     }
 
 }
