@@ -1,6 +1,6 @@
 {
     "api": {
-        "require_startup_execution": true,
+        "require_startup_execution": false,
         "class_name": "ZappAnalyticsPluginSwrve.ZappAnalyticsPluginSwrvePlugin",
         "modules": []
     },
@@ -10,7 +10,7 @@
     "platform": "ios",
     "author_name": "Mohieddine Zarif",
     "author_email": "mohieddine.zarif@gotocme.com",
-    "manifest_version": "0.0.4",
+    "manifest_version": "0.0.5",
     "name": "ZappAnalyticsPluginSwrve",
     "description": "SportsMax Swrve Plugin Integration",
     "type": "analytics",
