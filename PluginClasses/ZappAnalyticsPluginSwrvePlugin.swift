@@ -46,6 +46,7 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
         let trackerConfig = SwrveConfig()
         // SwrveConfig
         trackerConfig.stack = SWRVE_STACK_EU
+        trackerConfig.pushResponseDelegate = self
         trackerConfig.pushEnabled = true
         
         if let accountIdVal = self.configurationJSON?[self.ACCOUNT_ID_KEY] as? String,
@@ -60,6 +61,18 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
             #endif
             ZappAnalyticsPluginSwrvePlugin.isAutoIntegrated = true
         }
+    
+        if #available(iOS 10.0, *) {
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound],
+                                                                                  categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        UIApplication.shared.registerForRemoteNotifications()
 
     }
     
@@ -120,4 +133,35 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
         super.setPushNotificationDeviceToken(deviceToken)
     }
 
+}
+
+extension ZappAnalyticsPluginSwrvePlugin: SwrvePushResponseDelegate {
+    @available(iOS 10.0, *)
+    public func didReceive(_ response: UNNotificationResponse, withCompletionHandler completionHandler: (() -> Void)) {
+        print("Got iOS 10 Notification with Identifier - (response.actionIdentifier)")
+        // Called when the push is interacted with. (pressed, button or dismiss)
+        completionHandler()
+    }
+     
+    @available(iOS 10.0, *)
+    public func willPresent(_ notification: UNNotification, withCompletionHandler completionHandler: ((UNNotificationPresentationOptions) -> Void)) {
+        // Called when a push is received when the app is in the foreground.
+        completionHandler([])
+    }
+     
+    /** Background update processing **/
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+     
+        let handled = SwrveSDK.didReceiveRemoteNotification(userInfo, withBackgroundCompletionHandler: { fetchResult, swrvePayload in
+                // NOTE: Do not call the Swrve SDK from this context
+                // Your code here to process a Swrve remote push and payload
+                // This can be used to process DeepLinks
+                completionHandler(fetchResult)
+            })
+     
+        if(!handled){
+            // Your code here, it is either a non-background push received in the background or a non-Swrve remote push
+            // You’ll have to process the payload on your own and call the completionHandler as normal
+        }
+    }
 }

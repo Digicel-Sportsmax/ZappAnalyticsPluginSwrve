@@ -5,7 +5,7 @@
 		},
 		"author_name": "Mohieddine Zarif",
 		"author_email": "mohieddine.zarif@gotocme.com",
-		"manifest_version": "0.0.6",
+		"manifest_version": "0.0.7",
 		"name": "ZappAnalyticsPluginSwrve",
 		"description": "SportsMax Swrve Plugin Integration",
 		"identifier": "ZappAnalyticsPluginSwrve",
