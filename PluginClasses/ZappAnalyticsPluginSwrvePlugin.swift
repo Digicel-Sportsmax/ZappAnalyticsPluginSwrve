@@ -48,6 +48,7 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
         trackerConfig.stack = SWRVE_STACK_EU
         trackerConfig.pushResponseDelegate = self
         trackerConfig.pushEnabled = true
+        trackerConfig.pushNotificationEvents = Set(["tutorial.complete", "subscribe"])
         
         if let accountIdVal = self.configurationJSON?[self.ACCOUNT_ID_KEY] as? String,
             let accountIdAsInt = Int32(accountIdVal),
