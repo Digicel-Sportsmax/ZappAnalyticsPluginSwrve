@@ -10,6 +10,7 @@ def shared_pods
   pod 'ZappPlugins'
     pod 'ApplicasterSDK'
     pod 'SwrveSDK'
+    pod 'ZappPushPluginFirebase'
     pod 'ZappSDK', :path => './ZappAnalyticsPluginSwrve.podspec'
 end
 
