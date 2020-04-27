@@ -13,7 +13,8 @@ import SwrveSDK
 public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     
     let eventDuration = "EVENT_DURATION"
-    fileprivate let ACCOUNT_ID_KEY = "swrve_account_id"
+    fileprivate let ACCOUNT_ID_KEY_SANDBOX = "swrve_account_id_sandbox"
+    fileprivate let ACCOUNT_ID_KEY_PRODUCTION = "swrve_account_id_production"
     fileprivate let SANDBOX_API_KEY = "swrve_sandbox_key"
     fileprivate let PRODUCTION_API_KEY = "swrve_production_key"
     
@@ -50,15 +51,17 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
         trackerConfig.pushEnabled = true
         trackerConfig.pushNotificationEvents = Set(["tutorial.complete", "subscribe"])
         
-        if let accountIdVal = self.configurationJSON?[self.ACCOUNT_ID_KEY] as? String,
-            let accountIdAsInt = Int32(accountIdVal),
+        if let accountIdValSandbox = self.configurationJSON?[self.ACCOUNT_ID_KEY_SANDBOX] as? String,
+            let accountIdValProduction = self.configurationJSON?[self.ACCOUNT_ID_KEY_PRODUCTION] as? String,
+            let accountIdAsIntSandbox = Int32(accountIdValSandbox),
+            let accountIdAsIntProduction = Int32(accountIdValProduction),
             let sandboxApiKeyVal = self.configurationJSON?[self.SANDBOX_API_KEY] as? String,
             let productionApiKeyVal = self.configurationJSON?[self.PRODUCTION_API_KEY] as? String {
             
             #if PROD
-            SwrveSDK.sharedInstance(withAppID: accountIdAsInt, apiKey: productionApiKeyVal, config: trackerConfig)
+            SwrveSDK.sharedInstance(withAppID: accountIdAsIntProduction, apiKey: productionApiKeyVal, config: trackerConfig)
             #else
-            SwrveSDK.sharedInstance(withAppID: accountIdAsInt, apiKey: sandboxApiKeyVal, config: trackerConfig)
+            SwrveSDK.sharedInstance(withAppID: accountIdAsIntSandbox, apiKey: sandboxApiKeyVal, config: trackerConfig)
             #endif
             ZappAnalyticsPluginSwrvePlugin.isAutoIntegrated = true
         }
