@@ -7,6 +7,13 @@
     "dependency_repository_url": [
         "https://github.com/Digicel-Sportsmax/ZappAnalyticsPluginSwrve.git"
     ],
+    "extra_dependencies": [
+        {
+          "NotificationServiceExtension": {
+            "SwrveSDKCommon"
+          }
+        }
+    ],
     "platform": "ios",
     "author_name": "Mohieddine Zarif",
     "author_email": "mohieddine.zarif@gotocme.com",
