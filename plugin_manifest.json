@@ -7,13 +7,6 @@
     "dependency_repository_url": [
         "https://github.com/Digicel-Sportsmax/ZappAnalyticsPluginSwrve.git"
     ],
-    "extra_dependencies": [
-        {
-          "NotificationServiceExtension": {
-            "SwrveSDKCommon"
-          }
-        }
-    ],
     "platform": "ios",
     "author_name": "Mohieddine Zarif",
     "author_email": "mohieddine.zarif@gotocme.com",
@@ -32,6 +25,13 @@
     "deprecated_since_zapp_sdk": "",
     "unsupported_since_zapp_sdk": "",
     "react_native": false,
+    "extra_dependencies": [
+    {
+      "NotificationServiceExtension": {
+        "SwrveSDKCommon": "'~> 6.4.2'"
+      }
+    }
+  ],
     "custom_configuration_fields": [
         {
             "type": "text",
