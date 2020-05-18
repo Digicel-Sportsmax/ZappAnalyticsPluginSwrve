@@ -17,7 +17,7 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     fileprivate let ACCOUNT_ID_KEY_PRODUCTION = "swrve_account_id_production"
     fileprivate let SANDBOX_API_KEY = "swrve_sandbox_key"
     fileprivate let PRODUCTION_API_KEY = "swrve_production_key"
-    
+    fileprivate let SCREEN_VISIT_KEY = "screen_visit"
     static var isAutoIntegrated: Bool = false
     var timedEventDictionary: NSMutableDictionary?
     
@@ -117,7 +117,12 @@ public class ZappAnalyticsPluginSwrvePlugin: ZPAnalyticsProvider {
     }
 
     public override func trackScreenView(_ screenName: String, parameters: [String : NSObject]) {
-        let eventName = "Screen Visit: "+screenName
+        let eventName = self.SCREEN_VISIT_KEY
+        trackEvent(eventName, parameters: parameters)
+    }
+    
+    
+    open func trackEvent(_ eventName:String, parameters:[String:NSObject], model: Any?) {
         trackEvent(eventName, parameters: parameters)
     }
 
